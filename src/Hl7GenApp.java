@@ -13,35 +13,37 @@ import java.awt.event.*;
 public class Hl7GenApp {
     private static int numOperations;
     private static String desktopPath = System.getProperty("user.home") + "/Desktop/";
-    private static String folderName = "queue";
+    private static String folderName = "queue/";
     private static String folderPath = desktopPath + folderName;
     private static File folder = new File(folderPath);
 
     public static void main(String[] args) {
+
         JFrame frame = new JFrame("HL7 Sample Generator");
-        frame.setSize(300, 150);
+        frame.setSize(450, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
 
         JLabel label = new JLabel("Number of files to generate:");
         label.setBounds(20, 20, 200, 30);
         JLabel label2 = new JLabel("Customized path:");
-        label.setBounds(20, 20, 200, 30);
+        label2.setBounds(20, 50, 200, 30);
         frame.add(label);
         frame.add(label2);
 
         JTextField textField = new JTextField();
         JTextField textField1 = new JTextField();
         textField.setBounds(200, 20, 50, 30);
-        textField1.setBounds(200, 20, 50, 30);
+        textField1.setBounds(200, 50, 200, 30);
         frame.add(textField);
         frame.add(textField1);
 
         JButton button = new JButton("Generate HL7 Files");
-        button.setBounds(80, 70, 150, 30);
+        button.setBounds(80, 100, 150, 30);
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String input = textField.getText();
+                String path = folderPath;
                 try {
                     numOperations = Integer.parseInt(input);
                     if (numOperations > 0) {
@@ -56,12 +58,12 @@ public class Hl7GenApp {
                         } else {
                             System.out.println("Folder already exists: " + folderPath);
                         }
-                        desktopPath += "/queue/";
+
                         for (int i = 0; i < numOperations; i++) {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
                             String timestamp = dateFormat.format(new Date());
                             String filename = "example_" + timestamp + "_" + i + ".hl7";
-                            try (BufferedWriter writer = new BufferedWriter(new FileWriter(desktopPath + filename))) {
+                            try (BufferedWriter writer = new BufferedWriter(new FileWriter(folderPath + filename))) {
                                 Hl7Gen temp = new Hl7Gen();
                                 temp.setName(i);
                                 writer.write(temp.toString());
