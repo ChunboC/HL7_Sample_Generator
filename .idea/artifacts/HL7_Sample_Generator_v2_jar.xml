@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="HL7 Generator:jar2">
-    <output-path>$PROJECT_DIR$/out/artifacts/HL7_Generator_jar2</output-path>
+  <artifact type="jar" build-on-make="true" name="HL7 Sample Generator v2:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/HL7_Sample_Generator_v2_jar</output-path>
     <root id="archive" name="HL7 Generator.jar">
       <element id="module-output" name="HL7 Generator" />
     </root>
